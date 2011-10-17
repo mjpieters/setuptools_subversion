@@ -30,7 +30,7 @@ Martijn Pieters <mj@zopatista.com>
 Changelog
 =========
 
-1.1 (unreleased)
+1.1 (2011-10-17)
 ----------------
 
 * Packaging metadata update.
