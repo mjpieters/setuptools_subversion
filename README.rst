@@ -33,6 +33,7 @@ Changelog
 1.1 (unreleased)
 ----------------
 
+* Packaging metadata update.
 
 1.0 (2011-10-17)
 ----------------

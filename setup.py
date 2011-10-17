@@ -15,7 +15,7 @@ setup(
     include_package_data=True,
     zip_safe=True,
     install_requires=[],
-    py_modules=['setuptools_svn'],
+    py_modules=['setuptools_subversion'],
     entry_points='''
         [setuptools.file_finders]
         svn=setuptools_subversion:listfiles
