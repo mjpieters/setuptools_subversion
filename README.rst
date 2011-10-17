@@ -30,6 +30,10 @@ Martijn Pieters <mj@zopatista.com>
 Changelog
 =========
 
+1.1 (unreleased)
+----------------
+
+
 1.0 (2011-10-17)
 ----------------
 
