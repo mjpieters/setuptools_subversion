@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.3 (unreleased)
+1.3 (2011-10-19)
 ----------------
 
 * Metadata and minor documentation updates.
