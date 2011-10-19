@@ -7,6 +7,10 @@ Changelog
 * Metadata and minor documentation updates.
   [mj]
 
+* Improve logging output when the svn command fails; lowering it to INFO
+  level and prepending the module name.
+  [mj]
+
 1.2 (2011-10-19)
 ----------------
 

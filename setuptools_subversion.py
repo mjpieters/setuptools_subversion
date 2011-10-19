@@ -5,7 +5,7 @@ try:
 except ImportError:
     CalledProcessError = SystemError
 from subprocess import PIPE
-from distutils.log import warn
+from distutils import log
 
 
 try:
@@ -28,12 +28,12 @@ except ImportError:
         return output
 
 
-def listfiles(directory):
+def listfiles(directory, __name__=__name__):
     try:
         files = check_output(['svn', 'list', '-R', directory],
             stderr=PIPE)
     except (CalledProcessError, OSError):
-        warn('Error running "svn list"')
+        log.info('%s: Error running "svn list"', __name__)
         return []
     return [f.strip() for f in files.splitlines()]
 
@@ -44,5 +44,5 @@ if __name__ == '__main__':
         print('%s directory' % sys.argv[0])
         sys.exit(1)
     fsencoding = sys.getfilesystemencoding()
-    for name in listfiles(sys.argv[1]):
+    for name in listfiles(sys.argv[1], sys.argv[0]):
         print(name.decode(fsencoding))
