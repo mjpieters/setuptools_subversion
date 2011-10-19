@@ -45,7 +45,7 @@ Martijn Pieters <mj@zopatista.com>
 Changelog
 =========
 
-1.2 (unreleased)
+1.2 (2011-10-19)
 ----------------
 
 * Compatibility with python versions 2.4 and 2.5 (thanks to Maurits van Rees)
