@@ -36,6 +36,9 @@ Changelog
 * Compatibility with python versions 2.4 and 2.5 (thanks to Maurits van Rees).
   [mj]
 
+* Compatibility with python 3.
+  [mj]
+
 1.1 (2011-10-17)
 ----------------
 

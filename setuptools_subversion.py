@@ -43,5 +43,6 @@ if __name__ == '__main__':
     if len(sys.argv) != 2:
         print('%s directory' % sys.argv[0])
         sys.exit(1)
+    fsencoding = sys.getfilesystemencoding()
     for name in listfiles(sys.argv[1]):
-        print name
+        print(name.decode(fsencoding))
