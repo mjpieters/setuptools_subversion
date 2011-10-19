@@ -33,6 +33,8 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+* Compatibility with python versions 2.4 and 2.5 (thanks to Maurits van Rees).
+  [mj]
 
 1.1 (2011-10-17)
 ----------------

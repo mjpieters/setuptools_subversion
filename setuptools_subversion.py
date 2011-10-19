@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 
-from subprocess import CalledProcessError
+try:
+    from subprocess import CalledProcessError
+except ImportError:
+    CalledProcessError = SystemError
 from subprocess import PIPE
 from distutils.log import warn
 
