@@ -4,6 +4,8 @@ Changelog
 1.3 (unreleased)
 ----------------
 
+* Metadata and minor documentation updates.
+  [mj]
 
 1.2 (2011-10-19)
 ----------------
