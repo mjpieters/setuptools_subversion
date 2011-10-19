@@ -9,7 +9,7 @@ from distutils.log import warn
 try:
     from subprocess import check_output
 except ImportError:
-	# Python 2.6 and before
+    # Python 2.6 and before
     def check_output(*popenargs, **kwargs):
         from subprocess import Popen
         if 'stdout' in kwargs:
@@ -29,17 +29,17 @@ except ImportError:
 def listfiles(directory):
     try:
         files = check_output(['svn', 'list', '-R', directory],
-        	stderr=PIPE)
+            stderr=PIPE)
     except (CalledProcessError, OSError):
-    	warn('Error running "svn list"')
+        warn('Error running "svn list"')
         return []
     return [f.strip() for f in files.splitlines()]
 
 
 if __name__ == '__main__':
-	import sys
-	if len(sys.argv) != 2:
-		print('%s directory' % sys.argv[0])
-		sys.exit(1)
-	for name in listfiles(sys.argv[1]):
-		print name
+    import sys
+    if len(sys.argv) != 2:
+        print('%s directory' % sys.argv[0])
+        sys.exit(1)
+    for name in listfiles(sys.argv[1]):
+        print name
