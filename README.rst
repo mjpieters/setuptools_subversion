@@ -16,6 +16,11 @@ This package uses the `svn list` command instead to list files in a repository,
 avoiding having to know about every version of subversion and it's particular
 metadata formats.
 
+Note that when using setuptools on a subversion 1.7 working copy, setuptools
+itself will complain about not being able to parse the `.svn/entries` file
+before it delegates file listing to this plugin. This is just a warning, and
+can safely be ignored.
+
 
 Requirements
 ------------
