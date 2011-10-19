@@ -16,10 +16,20 @@ This package uses the `svn list` command instead to list files in a repository,
 avoiding having to know about every version of subversion and it's particular
 metadata formats.
 
+
+Requirements
+------------
+
+* Python 2.4 or newer (including python 3.x)
+
+* The `svn` command line tool. Any version will do.
+
+
 License
 -------
 
 BSD (simplified), see: LICENSE.txt
+
 
 Author
 ------
