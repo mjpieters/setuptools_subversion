@@ -6,7 +6,10 @@ setup(
     name='setuptools_subversion',
     version=version,
     description="Setuptools revision control system plugin for Subversion",
-    long_description=open("README.rst").read(),
+    long_description='\n'.join([
+        open("README.rst").read(),
+        open('CHANGES.rst').read(),
+    ]),
     keywords='',
     author='Martijn Pieters',
     author_email='mj@zopatista.com',
