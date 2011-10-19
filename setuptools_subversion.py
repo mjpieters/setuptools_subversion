@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import os
 from subprocess import CalledProcessError
 from subprocess import PIPE
 from distutils.log import warn
