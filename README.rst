@@ -30,6 +30,15 @@ Requirements
 * The `svn` command line tool. Any version will do.
 
 
+Development
+-----------
+
+The project code is hosted on GitHub_, feel free to report issues,
+fork the code and issue pull requests.
+
+.. _GitHub: https://github.com/mjpieters/setuptools_subversion
+
+
 License
 -------
 
