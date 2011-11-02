@@ -4,6 +4,9 @@ Changelog
 1.4 (unreleased)
 ----------------
 
+* Return only files, not directories.
+  [stefan]
+
 1.3 (2011-10-19)
 ----------------
 
