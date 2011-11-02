@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.4 (unreleased)
+1.4 (2011-11-02)
 ----------------
 
 * Return only files, not directories.
