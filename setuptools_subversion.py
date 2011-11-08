@@ -3,6 +3,7 @@
 import os
 try:
     from subprocess import CalledProcessError
+    CalledProcessError  # pyflakes
 except ImportError:
     CalledProcessError = SystemError
 from subprocess import PIPE
@@ -11,6 +12,7 @@ from distutils import log
 
 try:
     from subprocess import check_output
+    check_output  # pyflakes
 except ImportError:
     # Python 2.6 and before
     def check_output(*popenargs, **kwargs):
