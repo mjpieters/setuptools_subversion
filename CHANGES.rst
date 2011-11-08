@@ -4,6 +4,9 @@ Changelog
 1.5 (unreleased)
 ----------------
 
+* Fixed compatibility with Python 2.4.
+  [maurits]
+
 1.4 (2011-11-02)
 ----------------
 
