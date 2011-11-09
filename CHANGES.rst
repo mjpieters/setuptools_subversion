@@ -4,6 +4,9 @@ Changelog
 1.6 (unreleased)
 ----------------
 
+* Fixed compatibility with Python 3.
+  [mj]
+
 1.5 (2011-11-09)
 ----------------
 
