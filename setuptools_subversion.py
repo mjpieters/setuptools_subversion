@@ -3,6 +3,7 @@
 import os
 try:
     from subprocess import CalledProcessError
+    CalledProcessError  # pyflakes
 except ImportError:
     CalledProcessError = SystemError
 from subprocess import PIPE
@@ -11,6 +12,7 @@ from distutils import log
 
 try:
     from subprocess import check_output
+    check_output  # pyflakes
 except ImportError:
     # Python 2.6 and before
     def check_output(*popenargs, **kwargs):
@@ -36,7 +38,7 @@ def listfiles(directory, __name__=__name__):
     except (CalledProcessError, OSError):
         log.info('%s: Error running "svn list"', __name__)
         return []
-    return [f for f in files.splitlines() if not f.endswith(('/', os.sep))]
+    return [f for f in files.splitlines() if not f.endswith(os.sep)]
 
 
 if __name__ == '__main__':
