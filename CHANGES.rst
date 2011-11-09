@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.5 (unreleased)
+1.5 (2011-11-09)
 ----------------
 
 * Fixed compatibility with Python 2.4.
