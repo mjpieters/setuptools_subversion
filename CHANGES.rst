@@ -4,6 +4,9 @@ Changelog
 1.7 (unreleased)
 ----------------
 
+* Fix issue #3: svn ls on Windows may return slashes.
+  [stefan]
+
 1.6 (2011-11-09)
 ----------------
 
