@@ -31,7 +31,7 @@ except ImportError:
         return output
 
 
-def listfiles(directory, __name__=__name__):
+def listfiles(directory='', __name__=__name__):
     try:
         files = check_output(['svn', 'list', '-R', directory],
             stderr=PIPE)
