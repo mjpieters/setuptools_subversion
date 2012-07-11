@@ -4,6 +4,9 @@ Changelog
 1.8 (unreleased)
 ----------------
 
+* Fixed compatibility with Python 2.4 once more.
+  [mj]
+
 1.7 (2012-07-11)
 ----------------
 

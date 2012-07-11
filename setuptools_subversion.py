@@ -40,7 +40,7 @@ def listfiles(directory='', __name__=__name__):
     except (CalledProcessError, OSError):
         log.info('%s: Error running "svn list"', __name__)
         return []
-    return [f for f in files.splitlines() if not f.endswith(DIRSEP)]
+    return [f for f in files.splitlines() if f[-1:] not in DIRSEP]
 
 
 if __name__ == '__main__':
