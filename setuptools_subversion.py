@@ -9,6 +9,8 @@ except ImportError:
 from subprocess import PIPE
 from distutils import log
 
+DIRSEP = (os.sep.encode('ascii'), '/'.encode('ascii'))
+
 
 try:
     from subprocess import check_output
@@ -31,15 +33,14 @@ except ImportError:
         return output
 
 
-def listfiles(directory, __name__=__name__):
+def listfiles(directory='', __name__=__name__):
     try:
         files = check_output(['svn', 'list', '-R', directory],
             stderr=PIPE)
     except (CalledProcessError, OSError):
         log.info('%s: Error running "svn list"', __name__)
         return []
-    return [f for f in files.splitlines()
-        if not f.endswith(os.sep.encode('ascii'))]
+    return [f for f in files.splitlines() if not f.endswith(DIRSEP)]
 
 
 if __name__ == '__main__':
