@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.8 (unreleased)
+1.8 (2012-07-11)
 ----------------
 
 * Fixed compatibility with Python 2.4 once more.
