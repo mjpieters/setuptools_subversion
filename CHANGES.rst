@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.7 (unreleased)
+1.7 (2012-07-11)
 ----------------
 
 * Fix issue #3: svn ls on Windows may return slashes.
