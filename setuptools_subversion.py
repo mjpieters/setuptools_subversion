@@ -34,11 +34,18 @@ except ImportError:
 
 
 def listfiles(directory='', __name__=__name__):
+    # Return quietly if this is not a Subversion sandbox
+    try:
+        files = check_output(['svn', 'info', directory],
+            stderr=PIPE)
+    except (CalledProcessError, OSError):
+        return []
+    # Log error if something goes wrong during 'svn list'
     try:
         files = check_output(['svn', 'list', '-R', directory],
             stderr=PIPE)
     except (CalledProcessError, OSError):
-        log.info('%s: Error running "svn list"', __name__)
+        log.warn("%s: Error running 'svn list'", __name__)
         return []
     return [f for f in files.splitlines() if f[-1:] not in DIRSEP]
 
