@@ -4,6 +4,9 @@ Changelog
 1.9 (unreleased)
 ----------------
 
+* Don't log an error when the target directory is not a Subversion sandbox.
+  [stefan]
+
 1.8 (2012-07-11)
 ----------------
 
