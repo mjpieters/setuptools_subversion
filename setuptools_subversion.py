@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 import os
+import sys
+import locale
 try:
     from subprocess import CalledProcessError
     CalledProcessError  # pyflakes
@@ -33,6 +35,13 @@ except ImportError:
         return output
 
 
+def u(string):
+    if sys.version_info >= (3,):
+        return string.decode(locale.getlocale()[1], "surrogateescape")
+    else:
+        return string
+
+
 def listfiles(directory='', __name__=__name__):
     # Return quietly if this is not a Subversion sandbox
     try:
@@ -47,14 +56,12 @@ def listfiles(directory='', __name__=__name__):
     except (CalledProcessError, OSError):
         log.warn("%s: Error running 'svn list'", __name__)
         return []
-    return [f for f in files.splitlines() if f[-1:] not in DIRSEP]
+    return [u(f) for f in files.splitlines() if f[-1:] not in DIRSEP]
 
 
 if __name__ == '__main__':
-    import sys
     if len(sys.argv) != 2:
         print('%s directory' % sys.argv[0])
         sys.exit(1)
-    fsencoding = sys.getfilesystemencoding()
     for name in listfiles(sys.argv[1], sys.argv[0]):
-        print(name.decode(fsencoding))
+        print(name)
