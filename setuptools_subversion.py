@@ -2,7 +2,6 @@
 
 import os
 import sys
-import locale
 try:
     from subprocess import CalledProcessError
     CalledProcessError  # pyflakes
@@ -12,6 +11,7 @@ from subprocess import PIPE
 from distutils import log
 
 DIRSEP = (os.sep.encode('ascii'), '/'.encode('ascii'))
+ENCODING = sys.getfilesystemencoding()
 
 
 try:
@@ -37,7 +37,7 @@ except ImportError:
 
 def u(string):
     if sys.version_info >= (3,):
-        return string.decode(locale.getlocale()[1], "surrogateescape")
+        return string.decode(ENCODING, "surrogateescape")
     else:
         return string
 
