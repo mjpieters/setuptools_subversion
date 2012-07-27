@@ -44,10 +44,11 @@ def listfiles(directory='', __name__=__name__):
 
 
 if __name__ == '__main__':
-    import sys
+    import sys, distutils
     if len(sys.argv) != 2:
         print('%s directory' % sys.argv[0])
         sys.exit(1)
+    distutils.log.set_threshold(distutils.log.DEBUG) # Expose log messages
     fsencoding = sys.getfilesystemencoding()
     for name in listfiles(sys.argv[1], sys.argv[0]):
         print(name.decode(fsencoding))
