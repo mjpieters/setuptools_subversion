@@ -7,6 +7,9 @@ Changelog
 * Don't log an error when the target directory is not a Subversion sandbox.
   [stefan]
 
+* Return Unicode strings under Python 3.
+  [stefan]
+
 1.8 (2012-07-11)
 ----------------
 
