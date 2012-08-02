@@ -53,7 +53,8 @@ def listfiles(directory='', __name__=__name__):
         log.warn("%s: Error running 'svn list'", __name__)
         return []
     # Return filesystem encoding in Python 2 and Unicode in Python 3
-    return [encode(m.group(1)) for m in FILENAME_RE.finditer(decode(files))]
+    return [encode(compose(m.group(1))) for m in FILENAME_RE.finditer(
+        decode(files))]
 
 
 def decode(text):
@@ -80,7 +81,7 @@ def encode(text):
 
 
 def compose(text):
-    # Convert to NFC to make sure we can print in non-UTF-8 locales
+    # Convert to NFC to make sure we can operate in non-UTF-8 locales
     # (HFS Plus uses decomposed UTF-8)
     if sys.version_info >= (3,):
         return unicodedata.normalize('NFC', text)
@@ -93,5 +94,5 @@ if __name__ == '__main__':
         print('%s directory' % sys.argv[0])
         sys.exit(1)
     for name in listfiles(sys.argv[1], sys.argv[0]):
-        print(compose(name))
+        print(name)
 
