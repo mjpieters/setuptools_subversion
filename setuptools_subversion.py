@@ -52,8 +52,8 @@ def listfiles(directory='', __name__=__name__):
     except (CalledProcessError, OSError):
         log.warn("%s: Error running 'svn list'", __name__)
         return []
-    # Return UTF-8 under Python 2 and Unicode under Python 3
-    return [m.group(1) for m in FILENAME_RE.finditer(decode(files))]
+    # Return filesystem encoding in Python 2 and Unicode in Python 3
+    return [encode(m.group(1)) for m in FILENAME_RE.finditer(decode(files))]
 
 
 def decode(text):
@@ -65,14 +65,18 @@ def decode(text):
 
 
 def encode(text):
-    # Encode for display
+    # Encode to filesystem encoding
     if sys.version_info >= (3,):
         return text
     else:
-        enc = sys.stdout.encoding
-        if enc.lower() == 'utf-8':
+        encoding = sys.stdout.encoding
+        if encoding.lower() == 'utf-8':
             return text
-        return text.decode('utf-8').encode(enc)
+        try:
+            return text.decode('utf-8').encode(encoding)
+        except UnicodeEncodeError:
+            # Probably decomposed UTF-8
+            return text
 
 
 def compose(text):
@@ -89,5 +93,8 @@ if __name__ == '__main__':
         print('%s directory' % sys.argv[0])
         sys.exit(1)
     for name in listfiles(sys.argv[1], sys.argv[0]):
-        print(encode(compose(name)))
+        if sys.version_info >= (3,):
+            print(compose(name))
+        else:
+            print(name)
 
