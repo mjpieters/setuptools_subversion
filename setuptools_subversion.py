@@ -10,6 +10,7 @@ except ImportError:
     CalledProcessError = SystemError
 from subprocess import PIPE
 from distutils import log
+from unicodedata import normalize
 
 # XML format: <entry\n   kind="file">\n<name>README.txt</name> ...
 FILENAME_RE = re.compile('<entry\s+kind="file">\s*<name>(.*?)</name>',
@@ -52,25 +53,35 @@ def listfiles(directory='', __name__=__name__):
         log.warn("%s: Error running 'svn list'", __name__)
         return []
     # Return UTF-8 under Python 2 and Unicode under Python 3
-    out = []
-    if sys.version_info >= (3,):
-        files = files.decode('utf-8')
-    for match in FILENAME_RE.finditer(files):
-        out.append(match.group(1))
-    return out
+    return [m.group(1) for m in FILENAME_RE.finditer(decode(files))]
 
 
-def encode(filename):
-    # Encode filename for display
+def decode(text):
+    # Decode to Unicode
     if sys.version_info >= (3,):
-        return filename
-    elif sys.platform == 'win32':
-        return filename
+        return text.decode('utf-8')
     else:
-        enc = sys.getfilesystemencoding()
-        if enc.lower() in ('utf-8', 'utf8'):
-            return filename
-        return filename.decode('utf-8').encode(enc)
+        return text
+
+
+def encode(text):
+    # Encode for display
+    if sys.version_info >= (3,):
+        return text
+    else:
+        enc = sys.stdout.encoding
+        if enc.lower() == 'utf-8':
+            return text
+        return text.decode('utf-8').encode(enc)
+
+
+def compose(text):
+    # Return fully composed UTF-8
+    # (HFS Plus uses decomposed UTF-8)
+    if sys.version_info >= (3,):
+        return normalize('NFC', text)
+    else:
+        return normalize('NFC', text.decode('utf-8')).encode('utf-8')
 
 
 if __name__ == '__main__':
@@ -78,5 +89,5 @@ if __name__ == '__main__':
         print('%s directory' % sys.argv[0])
         sys.exit(1)
     for name in listfiles(sys.argv[1], sys.argv[0]):
-        print(encode(name))
+        print(encode(compose(name)))
 
