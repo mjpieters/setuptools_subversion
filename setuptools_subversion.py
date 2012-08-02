@@ -53,40 +53,33 @@ def listfiles(directory='', __name__=__name__):
         log.warn("%s: Error running 'svn list'", __name__)
         return []
     # Return filesystem encoding in Python 2 and Unicode in Python 3
-    return [encode(compose(m.group(1))) for m in FILENAME_RE.finditer(
-        decode(files))]
+    if sys.version_info >= (3,):
+        return [compose(m.group(1)) for m in FILENAME_RE.finditer(decode(files))]
+    else:
+        encoding = sys.stdout.encoding
+        return [encode(m.group(1), encoding) for m in FILENAME_RE.finditer(files)]
 
 
 def decode(text):
     # Decode to Unicode
-    if sys.version_info >= (3,):
-        return text.decode('utf-8')
-    else:
-        return text
+    return text.decode('utf-8')
 
 
-def encode(text):
-    # Encode to filesystem encoding
-    if sys.version_info >= (3,):
+def encode(text, encoding):
+    # Encode to specified encoding
+    if encoding.lower() == 'utf-8':
         return text
-    else:
-        encoding = sys.stdout.encoding
-        if encoding.lower() == 'utf-8':
-            return text
-        try:
-            return text.decode('utf-8').encode(encoding)
-        except UnicodeEncodeError:
-            # Probably decomposed UTF-8
-            return text
+    try:
+        return text.decode('utf-8').encode(encoding)
+    except UnicodeEncodeError:
+        # Probably decomposed UTF-8
+        return text
 
 
 def compose(text):
     # Convert to NFC to make sure we can operate in non-UTF-8 locales
     # (HFS Plus uses decomposed UTF-8)
-    if sys.version_info >= (3,):
-        return unicodedata.normalize('NFC', text)
-    else:
-        return text
+    return unicodedata.normalize('NFC', text)
 
 
 if __name__ == '__main__':
