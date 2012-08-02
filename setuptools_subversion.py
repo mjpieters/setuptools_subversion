@@ -3,6 +3,8 @@
 import os
 import sys
 import re
+import locale
+import unicodedata
 try:
     from subprocess import CalledProcessError
     CalledProcessError  # pyflakes
@@ -51,7 +53,7 @@ def listfiles(directory='', __name__=__name__):
     if sys.version_info >= (3,):
         return [compose(m.group(1)) for m in FILENAME_RE.finditer(decode(files))]
     else:
-        encoding = sys.stdout.encoding
+        encoding = locale.getpreferredencoding()
         return [transcode(m.group(1), encoding) for m in FILENAME_RE.finditer(files)]
 
 
@@ -74,7 +76,6 @@ def transcode(text, encoding):
 def compose(text):
     # Convert to NFC to make sure we can operate in non-UTF-8 locales
     # (HFS Plus uses decomposed UTF-8)
-    import unicodedata
     return unicodedata.normalize('NFC', text)
 
 
