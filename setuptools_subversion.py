@@ -3,6 +3,7 @@
 import os
 import sys
 import re
+import unicodedata
 try:
     from subprocess import CalledProcessError
     CalledProcessError  # pyflakes
@@ -10,7 +11,6 @@ except ImportError:
     CalledProcessError = SystemError
 from subprocess import PIPE
 from distutils import log
-from unicodedata import normalize
 
 # XML format: <entry\n   kind="file">\n<name>README.txt</name> ...
 FILENAME_RE = re.compile('<entry\s+kind="file">\s*<name>(.*?)</name>',
@@ -80,12 +80,12 @@ def encode(text):
 
 
 def compose(text):
-    # Return fully composed UTF-8
+    # Convert to NFC to make sure we can print in non-UTF-8 locales
     # (HFS Plus uses decomposed UTF-8)
     if sys.version_info >= (3,):
-        return normalize('NFC', text)
+        return unicodedata.normalize('NFC', text)
     else:
-        return normalize('NFC', text.decode('utf-8')).encode('utf-8')
+        return text
 
 
 if __name__ == '__main__':
@@ -93,8 +93,5 @@ if __name__ == '__main__':
         print('%s directory' % sys.argv[0])
         sys.exit(1)
     for name in listfiles(sys.argv[1], sys.argv[0]):
-        if sys.version_info >= (3,):
-            print(compose(name))
-        else:
-            print(name)
+        print(compose(name))
 
