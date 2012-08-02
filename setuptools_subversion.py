@@ -3,7 +3,6 @@
 import os
 import sys
 import re
-import locale
 import unicodedata
 try:
     from subprocess import CalledProcessError
@@ -49,11 +48,11 @@ def listfiles(directory='', __name__=__name__):
     except (CalledProcessError, OSError):
         log.warn("%s: Error running 'svn list'", __name__)
         return []
-    # Return local encoding in Python 2 and Unicode in Python 3
+    # Return filesystem encoding in Python 2 and Unicode in Python 3
     if sys.version_info >= (3,):
         return [compose(m.group(1)) for m in FILENAME_RE.finditer(decode(files))]
     else:
-        encoding = locale.getpreferredencoding()
+        encoding = sys.stdout.encoding
         return [encode(m.group(1), encoding) for m in FILENAME_RE.finditer(files)]
 
 
