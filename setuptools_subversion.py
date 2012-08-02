@@ -26,7 +26,7 @@ except ImportError:
         from subprocess import Popen
         if 'stdout' in kwargs:
             raise ValueError(
-                    'stdout argument not allowed, it will be overridden.')
+                'stdout argument not allowed, it will be overridden.')
         process = Popen(stdout=PIPE, *popenargs, **kwargs)
         output, unused_err = process.communicate()
         retcode = process.poll()
