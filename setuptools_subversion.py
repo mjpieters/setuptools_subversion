@@ -3,7 +3,6 @@
 import os
 import sys
 import re
-import unicodedata
 try:
     from subprocess import CalledProcessError
     CalledProcessError  # pyflakes
@@ -75,6 +74,7 @@ def transcode(text, encoding):
 def compose(text):
     # Convert to NFC to make sure we can operate in non-UTF-8 locales
     # (HFS Plus uses decomposed UTF-8)
+    import unicodedata
     return unicodedata.normalize('NFC', text)
 
 
