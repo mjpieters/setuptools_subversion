@@ -14,8 +14,7 @@ from subprocess import PIPE
 from distutils import log
 
 # XML format: <entry\n   kind="file">\n<name>README.txt</name> ...
-FILENAME_RE = re.compile('<entry\s+kind="file">\s*<name>(.*?)</name>',
-    re.MULTILINE)
+FILENAME_RE = re.compile('<entry\s+kind="file">\s*<name>(.*?)</name>', re.MULTILINE)
 
 
 try:
@@ -26,8 +25,7 @@ except ImportError:
     def check_output(*popenargs, **kwargs):
         from subprocess import Popen
         if 'stdout' in kwargs:
-            raise ValueError(
-                'stdout argument not allowed, it will be overridden.')
+            raise ValueError('stdout argument not allowed, it will be overridden.')
         process = Popen(stdout=PIPE, *popenargs, **kwargs)
         output, unused_err = process.communicate()
         retcode = process.poll()
@@ -42,14 +40,12 @@ except ImportError:
 def listfiles(directory='', __name__=__name__):
     # Return quietly if this is not a Subversion sandbox
     try:
-        files = check_output(['svn', 'info', directory],
-            stderr=PIPE)
+        files = check_output(['svn', 'info', directory], stderr=PIPE)
     except (CalledProcessError, OSError):
         return []
     # Run 'svn list' and log an error if something goes wrong
     try:
-        files = check_output(['svn', 'list', '-R', '--xml', directory],
-            stderr=PIPE)
+        files = check_output(['svn', 'list', '-R', '--xml', directory], stderr=PIPE)
     except (CalledProcessError, OSError):
         log.warn("%s: Error running 'svn list'", __name__)
         return []
