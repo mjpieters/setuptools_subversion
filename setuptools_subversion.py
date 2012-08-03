@@ -3,7 +3,6 @@
 import os
 import sys
 import re
-import locale
 import unicodedata
 try:
     from subprocess import CalledProcessError
@@ -53,7 +52,7 @@ def listfiles(directory='', __name__=__name__):
     if sys.version_info >= (3,):
         return [compose(m.group(1)) for m in FILENAME_RE.finditer(decode(files))]
     else:
-        encoding = locale.getpreferredencoding()
+        encoding = sys.stdout.encoding
         return [transcode(m.group(1), encoding) for m in FILENAME_RE.finditer(files)]
 
 
