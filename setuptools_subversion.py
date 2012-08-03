@@ -63,12 +63,9 @@ def decode(text):
 
 def transcode(text, encoding):
     # Transcode to specified encoding
-    if encoding.lower() == 'utf-8':
-        return text
     try:
-        return text.decode('utf-8').encode(encoding)
+        return compose(text.decode('utf-8')).encode(encoding)
     except UnicodeEncodeError:
-        # Probably decomposed UTF-8
         return text
 
 
