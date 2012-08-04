@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '1.9'
+version = '2.0'
 
 setup(
     name='setuptools_subversion',

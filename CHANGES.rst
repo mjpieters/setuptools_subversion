@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.9 (unreleased)
+2.0 (unreleased)
 ----------------
 
 * Don't log an error when the target directory is not a Subversion sandbox.
