@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0 (unreleased)
+2.0 (2012-08-04)
 ----------------
 
 * Don't log an error when the target directory is not a Subversion sandbox.
