@@ -4,6 +4,10 @@ Changelog
 2.1 (unreleased)
 ----------------
 
+* Do not rely on sys.stdout.encoding, use locale.getpreferredencoding()
+  instead; when used as a pipe no encoding is set otherwise.
+  [stefan]
+
 2.0 (2012-08-04)
 ----------------
 

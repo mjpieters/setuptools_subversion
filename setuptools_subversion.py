@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import sys
 import re
+import locale
 import unicodedata
 try:
     from subprocess import CalledProcessError
@@ -54,7 +55,9 @@ def listfiles(directory='', __name__=__name__):
         return [compose(m.group(1))
                 for m in FILENAME_RE.finditer(decode(files))]
     else:
-        encoding = sys.stdout.encoding
+        encoding = locale.getpreferredencoding()
+        if sys.platform == 'darwin' and encoding.startswith('mac-'):
+            encoding = 'utf-8'
         return [transcode(m.group(1), encoding)
                 for m in FILENAME_RE.finditer(files)]
 
