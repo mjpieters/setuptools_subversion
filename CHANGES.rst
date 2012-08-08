@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1 (unreleased)
+2.1 (2012-08-08)
 ----------------
 
 * Do not rely on sys.stdout.encoding, use locale.getpreferredencoding()
