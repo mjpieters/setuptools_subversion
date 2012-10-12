@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.0 (unreleased)
+3.0 (2012-10-12)
 ----------------
 
 * Use `svn info` to avoid a round-trip to the server, and use a SAX
