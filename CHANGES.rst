@@ -1,8 +1,13 @@
 Changelog
 =========
 
-2.2 (unreleased)
+3.0 (unreleased)
 ----------------
+
+* Use `svn info` to avoid a round-trip to the server, and use a SAX
+  parser to read the svn XML output instead of a regular expression.
+  Thanks to Matt Good for the `svn info` pointer.
+  [mj]
 
 2.1 (2012-08-08)
 ----------------
