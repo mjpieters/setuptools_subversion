@@ -4,6 +4,9 @@ Changelog
 3.1 (unreleased)
 ----------------
 
+* Re-introduce NFC normalization when using Python 3.
+  [mj]
+
 3.0 (2012-10-12)
 ----------------
 

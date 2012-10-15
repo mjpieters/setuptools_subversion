@@ -62,7 +62,7 @@ def listfiles(directory='', __name__=__name__):
     handler.files.sort()
     # Return local encoding in Python 2 and Unicode in Python 3
     if sys.version_info >= (3,):
-        return handler.files
+        return [compose(f) for f in handler.files]
     else:
         encoding = locale.getpreferredencoding()
         if sys.platform == 'darwin' and encoding.startswith('mac-'):
